@@ -1,0 +1,59 @@
+{
+  "id": null,
+  "title": "Docker Containers (cAdvisor)",
+  "tags": ["docker", "cadvisor"],
+  "timezone": "browser",
+  "schemaVersion": 30,
+  "version": 1,
+  "refresh": "10s",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Container CPU Usage",
+      "targets": [
+        {
+          "expr": "rate(container_cpu_usage_seconds_total{container!=\"\"}[5m]) * 100",
+          "legendFormat": "{{container}}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Container Memory Usage",
+      "targets": [
+        {
+          "expr": "container_memory_usage_bytes{container!=\"\"}",
+          "legendFormat": "{{container}}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Container Network I/O",
+      "targets": [
+        {
+          "expr": "rate(container_network_receive_bytes_total{container!=\"\"}[5m])",
+          "legendFormat": "{{container}} rx"
+        },
+        {
+          "expr": "rate(container_network_transmit_bytes_total{container!=\"\"}[5m])",
+          "legendFormat": "{{container}} tx"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Container Disk I/O",
+      "targets": [
+        {
+          "expr": "rate(container_fs_reads_bytes_total{container!=\"\"}[5m])",
+          "legendFormat": "{{container}} read"
+        },
+        {
+          "expr": "rate(container_fs_writes_bytes_total{container!=\"\"}[5m])",
+          "legendFormat": "{{container}} write"
+        }
+      ]
+    }
+  ]
+}

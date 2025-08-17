@@ -1,0 +1,145 @@
+Here’s a clean **README.md** for your monitoring stack repo 🚀
+
+---
+
+```markdown
+# 🐳 VPS Monitoring Stack (Prometheus + Grafana + cAdvisor + Node Exporter)
+
+This repository provides a simple **Docker Compose** setup to monitor your VPS and Docker containers using:
+
+- **Prometheus** → Metrics storage
+- **Grafana** → Dashboards & visualization
+- **cAdvisor** → Container-level metrics
+- **Node Exporter** → VPS (host) metrics
+
+---
+
+## 📂 Project Structure
+
+```
+
+monitoring-stack/
+├── docker-compose.yml
+├── prometheus/
+│   └── prometheus.yml
+├── grafana/
+│   ├── dashboards/
+│   │   ├── node-exporter-dashboard.json
+│   │   └── cadvisor-dashboard.json
+│   └── provisioning/
+│       ├── dashboards/
+│       │   └── dashboards.yml
+│       └── datasources/
+│           └── datasource.yml
+└── README.md
+
+````
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone this repo
+```bash
+git clone https://github.com/your-username/monitoring-stack.git
+cd monitoring-stack
+````
+
+### 2. Start the stack
+
+```bash
+docker-compose up -d
+```
+
+### 3. Access services
+
+* **Grafana** → [http://localhost:3000](http://localhost:3000)
+
+  * User: `admin`
+  * Password: `changeme`
+* **Prometheus** → [http://localhost:9090](http://localhost:9090)
+* **cAdvisor** → [http://localhost:8080](http://localhost:8080)
+* **Node Exporter** → [http://localhost:9100/metrics](http://localhost:9100/metrics)
+
+---
+
+## 📊 Dashboards
+
+Two ready-to-use Grafana dashboards are included:
+
+1. **Node Exporter Full (System metrics)**
+
+   * CPU, RAM, disk, network usage of the VPS.
+
+2. **cAdvisor Exporter (Container metrics)**
+
+   * CPU, RAM, network & I/O usage per container.
+
+Grafana auto-loads dashboards from `grafana/dashboards/`.
+
+---
+
+## 🔐 Security Recommendations
+
+* Change the default Grafana password in `docker-compose.yml`.
+* Use a reverse proxy (e.g., Nginx, Traefik, Caddy) with HTTPS.
+* Restrict Prometheus, cAdvisor, and Node Exporter ports to internal network only.
+
+---
+
+## 🛠 Management
+
+Start stack:
+
+```bash
+docker-compose up -d
+```
+
+Stop stack:
+
+```bash
+docker-compose down
+```
+
+View logs:
+
+```bash
+docker-compose logs -f
+```
+
+---
+
+## 📦 Data Persistence
+
+* Prometheus data → stored in `prometheus_data` Docker volume
+* Grafana data → stored in `grafana_data` Docker volume
+
+This means your metrics & dashboards survive container restarts.
+
+---
+
+## 🧩 Extending
+
+* Add more exporters (MySQL, PostgreSQL, Redis, etc).
+* Set up Grafana alerts (Slack, Telegram, Email).
+* Use Traefik/Nginx for HTTPS + authentication in front of Grafana.
+
+---
+
+## 📚 References
+
+* [Prometheus Docs](https://prometheus.io/docs/introduction/overview/)
+* [Grafana Docs](https://grafana.com/docs/)
+* [cAdvisor](https://github.com/google/cadvisor)
+* [Node Exporter](https://github.com/prometheus/node_exporter)
+
+---
+
+💡 With this stack, you get **full visibility** into your VPS + containers in just a few minutes.
+
+```
+
+---
+
+Do you want me to also include the **Grafana dashboard JSONs (Node Exporter + cAdvisor)** directly in the repo so Grafana boots with them already imported?
+```
